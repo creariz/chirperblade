@@ -31,12 +31,16 @@ class ChirpController extends Controller
      */
     public function store(Request $request):RedirectResponse
     {
+
+        //Validate the request.
         $validated = $request->validate([
             'message' => 'required|max:255',
         ]);
-
+        
+        //Create a new chirp.
         $request->user()->chirps()->create($validated);
-
+        
+        //Redirect to the chirps index.
         return redirect(route('chirps.index'));
     }
     
