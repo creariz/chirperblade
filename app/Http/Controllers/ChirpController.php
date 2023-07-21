@@ -15,7 +15,10 @@ class ChirpController extends Controller
      */
     public function index():View
     {
-        return view('chirps.index');
+        //Return the chirps index view.
+        return view('chirps.index', [
+            'chirps' => Chirp::with('user')->latest()->get(),
+        ]);
     }
 
     /**
@@ -31,7 +34,6 @@ class ChirpController extends Controller
      */
     public function store(Request $request):RedirectResponse
     {
-
         //Validate the request.
         $validated = $request->validate([
             'message' => 'required|max:255',
