@@ -1,18 +1,17 @@
 ---
 name: Enhancement issue template
 about: Describe this issue template's purpose here.
-title: ''
+title: "[DEFAULT]"
 labels: enhancement
-assignees: ''
+assignees: jefecame
 
 ---
 
-Task list of the enhancement proposed:
-- [ ] Task 1
-- [ ] Task 2
-- [ ] Task 3
+### Task list of the enhancement proposed:
+- [ ] Task1
+- [ ] [Task2](Task2Link)
 
-Code proposed:
+### Code proposed:
 ```
 code here
 ```
