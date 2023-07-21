@@ -1,7 +1,7 @@
 ---
 name: Enhancement issue template
 about: Describe this issue template's purpose here.
-title: "[DEFAULT]"
+title: "[ISSUE]: "
 labels: enhancement
 assignees: jefecame
 
