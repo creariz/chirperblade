@@ -46,8 +46,9 @@
 
                             </div>
 
-                            {{-- Show chirp edit action with x-dropdown blade component --}}
+                            {{-- Checks if authenticated user is chirp author and show chirp actions --}}
                             @if ($chirp->user->is(auth()->user()))
+                                {{-- Show chirp edit action with x-dropdown blade component --}}
                                 <x-dropdown>
 
                                     {{-- Trigger button --}}
@@ -76,6 +77,16 @@
                                         <x-dropdown-link :href="route('chirps.edit', $chirp)">
                                             {{ __('Edit') }}
                                         </x-dropdown-link>
+
+                                        {{-- chirp delete action: chirps.destroy route is used to delete chirp and require chirp id as route parameter and DELETE method --}}
+                                        <form method="POST" action="{{ route('chirps.destroy', $chirp) }}">
+                                            @csrf
+                                            @method('delete')
+                                            {{-- chirp delete button --}}
+                                            <x-dropdown-link :href="route('chirps.destroy', $chirp)" onclick="event.preventDefault(); this.closest('form').submit();">
+                                                {{ __('Delete') }}
+                                            </x-dropdown-link>
+                                        </form>
 
                                         {{-- chirp delete action: chirps.destroy route is used to delete chirp and require chirp id as route parameter and DELETE method --}}
                                         {{--
