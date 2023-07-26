@@ -38,14 +38,14 @@ class ChirpController extends Controller
         $validated = $request->validate([
             'message' => 'required|max:255',
         ]);
-        
+
         //Create a new chirp.
         $request->user()->chirps()->create($validated);
-        
+
         //Redirect to the chirps index.
         return redirect(route('chirps.index'));
     }
-    
+
     /**
      * Display the specified resource.
      */
@@ -57,17 +57,35 @@ class ChirpController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Chirp $chirp)
+    public function edit(Chirp $chirp):View
     {
-        //
+        //Authorize the request.
+        $this->authorize('update', $chirp);
+
+        //Return the chirps edit view.
+        return view('chirps.edit', [
+            'chirp' => $chirp,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Chirp $chirp)
+    public function update(Request $request, Chirp $chirp):RedirectResponse
     {
-        //
+        //Authorize the request.
+        $this->authorize('update', $chirp);
+
+        //Validate the request.
+        $validated = $request->validate([
+            'message' => 'required|max:255',
+        ]);
+
+        //Update the chirp.
+        $chirp->update($validated);
+
+        //Redirect to the chirps index.
+        return redirect(route('chirps.index'));
     }
 
     /**
